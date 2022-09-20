@@ -1,0 +1,13 @@
+[package]
+name = "uservice-redis"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rustls = "0.20.6"
+actix-web = { version="3", features=["rustls"] }
+dotenv = "0.15.0"
+log = "0.4.17"
+serde = "1.0.144"
