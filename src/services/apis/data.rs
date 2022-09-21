@@ -1,8 +1,10 @@
 use serde::{Deserialize, Serialize};
+use serde_json;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Body {
-    payload: String
+    key: String,
+    payload: Option<serde_json::Value>
 }
 
 #[derive(Debug, Serialize, Deserialize)]
