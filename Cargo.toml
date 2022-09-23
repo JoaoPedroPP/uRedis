@@ -10,6 +10,7 @@ rustls = "0.20.6"
 actix-web = { version="4.0.0-beta.10", features=["rustls"] }
 dotenv = "0.15.0"
 log = "0.4.17"
+env_logger = "0.9.1"
 serde = "1.0.144"
 serde_json = "1.0.85"
 openssl = { version = "0.10", features = ["vendored"] }
