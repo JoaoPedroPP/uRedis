@@ -4,11 +4,12 @@ use deadpool_redis::{redis::cmd, Connection, Pool, PoolError};
 //     web
 // };
 
-pub async fn get(pool: &Pool) -> Result<String, PoolError> {
+pub async fn get(pool: &Pool, key: &str) -> Result<String, PoolError> {
     println!("GET redis");
     let mut conn: Connection = pool.get().await?;
     // let pong: String = cmd("PING").query_async(&mut conn).await?;
-    let data: String = cmd("GET").arg(&["+43534534543534"]).query_async(&mut conn).await?;
+    let data: String = cmd("GET").arg(&[key]).query_async(&mut conn).await?;
+    println!("{:?}", data);
     Ok(data)
     // let client = redis::Client::open(redis_url).unwrap();
     // let mut con = client.get_connection().unwrap();

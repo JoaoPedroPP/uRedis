@@ -28,7 +28,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(pool.clone()))
             .app_data(web::JsonConfig::default().limit(8192))
             .route("/api/save", web::post().to(services::save_record))
-            // .route("/api/read", web::post().to(services::respond))
+            .route("/api/read", web::post().to(services::read_record))
     })
     .bind("0.0.0.0:8080")?
     .workers(4)
