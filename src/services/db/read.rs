@@ -4,7 +4,7 @@ use deadpool_redis::{redis::cmd, Connection, Pool, PoolError};
 //     web
 // };
 
-pub async fn save(pool: &Pool) -> Result<String, PoolError> {
+pub async fn get(pool: &Pool) -> Result<String, PoolError> {
     println!("GET redis");
     let mut conn: Connection = pool.get().await?;
     // let pong: String = cmd("PING").query_async(&mut conn).await?;

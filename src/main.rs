@@ -7,7 +7,6 @@ use actix_web::{
 };
 
 use deadpool_redis::{
-    redis::{ cmd, FromRedisValue },
     Config,
     Runtime
 };
@@ -16,7 +15,8 @@ mod services;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    log::info!("App Started");
+    env_logger::builder().init();
+    log::info!("-----------> App Started");
     dotenv::dotenv().ok();
     let redis_url = env::var("REDIS_URL").expect("REDIS_URL not set");
     let manager = Config::from_url(redis_url);
