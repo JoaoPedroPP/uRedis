@@ -16,7 +16,7 @@ mod services;
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env_logger::builder().init();
-    log::info!("-----------> App Started");
+    log::info!("App Started");
     dotenv::dotenv().ok();
     let redis_url = env::var("REDIS_URL").expect("REDIS_URL not set");
     let manager = Config::from_url(redis_url);
