@@ -31,7 +31,7 @@ impl GETResponse {
         GETResponse { code: 200, msg: "Success".to_string(), payload: Some(redis_result) }
     }
 
-    pub fn no_payload() -> GETResponse {
-        GETResponse { code: 200, msg: "Success".to_string(), payload: None }
+    pub fn no_payload(msg: String) -> GETResponse {
+        GETResponse { code: 200, msg: msg, payload: None }
     }
 }
