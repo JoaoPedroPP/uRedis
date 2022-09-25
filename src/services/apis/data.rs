@@ -4,7 +4,7 @@ use serde_json;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Body {
     pub key: String,
-    payload: Option<serde_json::Value>
+    pub payload: Option<serde_json::Value>
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -28,7 +28,13 @@ pub struct GETResponse {
 
 impl Default for Response {
     fn default() -> Response {
-        Response { code: 200, msg: "Success".to_string() }
+        Response { code: 201, msg: "Success".to_string() }
+    }
+}
+
+impl Response {
+    pub fn resp_no_body() -> Response {
+        Response { code: 204, msg: "No content to persist.".to_string() }
     }
 }
 
