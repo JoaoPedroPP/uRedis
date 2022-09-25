@@ -31,7 +31,7 @@ pub async fn read_record(pool: web::Data<Pool>, req: web::Json<Body>) -> Result<
             }
         },
         Err(error) => {
-            log::warn!("Error");
+            log::error!("{}", error);
             GETResponse::error()
         }
     };

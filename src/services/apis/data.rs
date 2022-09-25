@@ -14,17 +14,16 @@ pub struct Response {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub enum PayloadType {
+enum PayloadType {
     JSON(serde_json::Value),
-    Simple(String),
-    No
+    Simple(String)
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GETResponse {
     code: u32,
     msg: String,
-    payload: PayloadType
+    payload: Option<PayloadType>
 }
 
 impl Default for Response {
@@ -35,18 +34,18 @@ impl Default for Response {
 
 impl GETResponse {
     pub fn resp_200(redis_result: serde_json::Value) -> GETResponse {
-        GETResponse { code: 200, msg: "Success".to_string(), payload: PayloadType::JSON(redis_result) }
+        GETResponse { code: 200, msg: "Success".to_string(), payload: Some(PayloadType::JSON(redis_result)) }
     }
 
     pub fn resp_200_string(redis_result: String) -> GETResponse {
-        GETResponse { code: 200, msg: "Success".to_string(), payload: PayloadType::Simple(redis_result) }
+        GETResponse { code: 200, msg: "Success".to_string(), payload: Some(PayloadType::Simple(redis_result)) }
     }
 
     pub fn no_payload(msg: String) -> GETResponse {
-        GETResponse { code: 200, msg: msg, payload: PayloadType::No }
+        GETResponse { code: 200, msg: msg, payload: None }
     }
 
     pub fn error() -> GETResponse {
-        GETResponse { code: 500, msg: "Internal Server Error".to_string(), payload: PayloadType::No }
+        GETResponse { code: 500, msg: "Internal Server Error".to_string(), payload: None }
     }
 }
