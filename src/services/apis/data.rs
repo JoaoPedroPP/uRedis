@@ -36,6 +36,10 @@ impl Response {
     pub fn resp_no_body() -> Response {
         Response { code: 204, msg: "No content to persist.".to_string() }
     }
+
+    pub fn error() -> Response {
+        Response { code: 500, msg: "Internal Server Error".to_string() }
+    }
 }
 
 impl GETResponse {
