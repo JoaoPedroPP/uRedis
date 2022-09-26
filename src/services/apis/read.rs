@@ -8,7 +8,7 @@ use super::data::{
     Body,
     GETResponse
 };
-use serde_json;
+
 use crate::services::db::get;
 
 pub async fn read_record(pool: web::Data<Pool>, req: web::Json<Body>) -> Result<HttpResponse, Error> {
