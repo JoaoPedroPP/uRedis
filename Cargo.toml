@@ -1,7 +1,10 @@
 [package]
-name = "uservice-redis"
+name = "uredis"
 version = "0.1.0"
 edition = "2021"
+authors = ["JoaoPedroPP <poloniponce@protonmail.ch>"]
+license = "Apache-2.0"
+license-file = "LICENSE"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

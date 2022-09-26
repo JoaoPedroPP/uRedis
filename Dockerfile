@@ -20,10 +20,9 @@ WORKDIR /src/app
 
 COPY .env .
 
-COPY --from=cargo-build /usr/src/app/target/x86_64-unknown-linux-musl/release/uservice-redis .
+COPY --from=cargo-build /usr/src/app/target/x86_64-unknown-linux-musl/release/uredis .
 
 ENV RUST_LOG=info
-ENV RUST_BACKTRACE=1
 
 # Run the application
-CMD ["./uservice-redis"]
+CMD ["./uredis"]
