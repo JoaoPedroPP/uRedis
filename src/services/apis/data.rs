@@ -4,7 +4,8 @@ use serde_json;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Body {
     pub key: String,
-    pub payload: Option<serde_json::Value>
+    pub payload: Option<serde_json::Value>,
+    pub ttl: Option<u32>
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -35,6 +36,10 @@ impl Default for Response {
 impl Response {
     pub fn resp_no_body() -> Response {
         Response { code: 204, msg: "No content to persist.".to_string() }
+    }
+
+    pub fn resp_no_ttl() -> Response {
+        Response { code: 206, msg: "No ttl set.".to_string() }
     }
 
     pub fn error() -> Response {

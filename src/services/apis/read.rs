@@ -1,6 +1,6 @@
 use log;
 use actix_web::{
-    HttpResponse, HttpRequest, Error, web, error
+    HttpResponse, Error, web
 };
 use deadpool_redis::{ Pool };
 
