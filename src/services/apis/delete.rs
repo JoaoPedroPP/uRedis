@@ -12,9 +12,7 @@ use crate::services::db::delete;
 
 pub async fn delete_record(pool: web::Data<Pool>, req: web::Path<String>) -> Result<HttpResponse, Error> {
     let key: String = req.into_inner();
-    // println!("{:?}", key);
     log::info!("Delete Request Incoming");
-    // let resp: Response = Response::default();
     let resp: Response = match delete(&pool, &key).await {
         Ok(_) => Response::resp_generic("Deleted".to_string()),
         Err(error) => {
