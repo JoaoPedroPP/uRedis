@@ -34,6 +34,10 @@ impl Default for Response {
 }
 
 impl Response {
+    pub fn resp_generic(msg: String) -> Response {
+        Response { code: 200, msg: msg }
+    }
+
     pub fn resp_no_body() -> Response {
         Response { code: 204, msg: "No content to persist.".to_string() }
     }
