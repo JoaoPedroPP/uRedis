@@ -29,6 +29,7 @@ async fn main() -> std::io::Result<()> {
             .route("/api/save", web::post().to(services::save_record))
             .route("/api/cache", web::post().to(services::cache_record))
             .route("/api/read", web::post().to(services::read_record))
+            .route("/api/delete/{key}", web::get().to(services::delete_record))
     })
     .bind("0.0.0.0:8080")?
     .workers(4)
