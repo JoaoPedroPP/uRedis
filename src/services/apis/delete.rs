@@ -1,6 +1,6 @@
 use log;
 use actix_web::{
-    HttpResponse, Error, web
+    HttpResponse, Error, web, http::StatusCode
 };
 use deadpool_redis::{ Pool };
 
@@ -20,5 +20,5 @@ pub async fn delete_record(pool: web::Data<Pool>, req: web::Path<String>) -> Res
             Response::error()
         }
     };
-    return Ok(HttpResponse::Ok().json(resp));
+    return Ok(HttpResponse::Ok().status(StatusCode::from_u16(resp.code.try_into().unwrap()).unwrap()).json(resp));
 }

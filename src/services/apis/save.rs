@@ -1,6 +1,6 @@
 use log;
 use actix_web::{
-    HttpResponse, Error, web
+    HttpResponse, Error, web, http::StatusCode
 };
 use deadpool_redis::{ Pool };
 
@@ -32,7 +32,7 @@ pub async fn save_record(pool: web::Data<Pool>, req: web::Json<Body>) -> Result<
             }
         }
     };
-    return Ok(HttpResponse::Ok().json(resp));
+    return Ok(HttpResponse::Ok().status(StatusCode::from_u16(resp.code.try_into().unwrap()).unwrap()).json(resp));
 }
 
 pub async fn cache_record(pool: web::Data<Pool>, req: web::Json<Body>) -> Result<HttpResponse, Error> {
@@ -58,5 +58,5 @@ pub async fn cache_record(pool: web::Data<Pool>, req: web::Json<Body>) -> Result
             }
         }
     };
-    return Ok(HttpResponse::Ok().json(resp));
+    return Ok(HttpResponse::Ok().status(StatusCode::from_u16(resp.code.try_into().unwrap()).unwrap()).json(resp));
 }

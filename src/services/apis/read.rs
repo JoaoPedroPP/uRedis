@@ -1,6 +1,6 @@
 use log;
 use actix_web::{
-    HttpResponse, Error, web
+    HttpResponse, Error, web, http
 };
 use deadpool_redis::{ Pool };
 
@@ -35,5 +35,5 @@ pub async fn read_record(pool: web::Data<Pool>, req: web::Json<Body>) -> Result<
             GETResponse::error()
         }
     };
-    return Ok(HttpResponse::Ok().json(resp));
+    return Ok(HttpResponse::Ok().status(http::StatusCode::from_u16(resp.code.try_into().unwrap()).unwrap()).json(resp));
 }

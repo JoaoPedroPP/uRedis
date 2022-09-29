@@ -10,7 +10,7 @@ pub struct Body {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Response {
-    code: u32,
+    pub code: u32,
     msg: String
 }
 
@@ -22,7 +22,7 @@ enum PayloadType {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GETResponse {
-    code: u32,
+    pub code: u32,
     msg: String,
     payload: Option<PayloadType>
 }
