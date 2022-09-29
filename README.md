@@ -162,7 +162,7 @@ ENV RUST_LOG=info
 ENV REDIS_URL=YOUR_REDIS_URL
 ```
 
-_Obs: It is highly recommended to avoid add the local environment variables in a file or inside the Dockerfile if you will store the docker image in a public registry as Docker Hub, you crendential would be exposed. Many deploy platforms have a secction where you can insert enviroment variables and this is safest option to proceed wit you choose to do it this way._
+_Obs: It is highly recommended to avoid add local environment variables in a file or inside the Dockerfile if you will store the docker image in a public registry as Docker Hub, you crendential would be exposed. Many deploy platforms have a secction where you can insert enviroment variables and this is the safest option to proceed wit you choose to do it this way._
 
 ### Kubernetes
 
