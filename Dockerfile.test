@@ -1,0 +1,13 @@
+FROM rust:slim as cargo-build
+
+WORKDIR /usr/src/app
+
+COPY . .
+RUN apt-get update
+RUN apt-get install ca-certificates build-essential checkinstall zlib1g-dev libssl-dev -y
+COPY certi.pem /usr/local/share/ca-certificates/certi.crt
+RUN chmod 644 /usr/local/share/ca-certificates/certi.crt
+RUN update-ca-certificates
+# RUN cargo build --release
+
+CMD ["cargo", "test", "--", "--test-threads=1"]
