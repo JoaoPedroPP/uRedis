@@ -19,3 +19,6 @@ serde_json = "1.0.85"
 openssl = { version = "0.10", features = ["vendored"] }
 deadpool-redis = { version = "0.10.2", features = ["serde"] }
 redis = { version = "0.21", default-features = false, features = ["tokio-native-tls-comp"] }
+
+[dev-dependencies]
+lazy_static = "1.4.0"
