@@ -30,7 +30,7 @@ async fn main() -> std::io::Result<()> {
                 web::scope("/api")
                 .route("/save", web::post().to(services::save_record))
                 .route("/cache", web::post().to(services::cache_record))
-                .route("/read", web::post().to(services::read_record))
+                .route("/read/{key}", web::get().to(services::read_record))
                 .route("/delete/{key}", web::get().to(services::delete_record))
             )
     })
@@ -87,9 +87,8 @@ mod tests {
 
     #[actix_web::test]
     async fn test_read_200() {
-        let app = test::init_service(App::new().app_data(APP_STATE.clone()).route("/api/read", web::post().to(services::read_record))).await;
-        let payload = json!({ "key": "a"});
-        let req = test::TestRequest::post().uri("/api/read").set_json(payload).to_request();
+        let app = test::init_service(App::new().app_data(APP_STATE.clone()).route("/api/read/{key]", web::get().to(services::read_record))).await;
+        let req = test::TestRequest::get().uri("/api/read/a").set_json(payload).to_request();
         let resp = test::call_service(&app, req).await;
         assert_eq!(resp.status(), 200);
     }

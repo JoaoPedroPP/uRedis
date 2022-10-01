@@ -5,20 +5,19 @@ use actix_web::{
 use deadpool_redis::{ Pool };
 
 use super::data::{
-    Body,
     GETResponse
 };
 
 use crate::services::db::get;
 
-pub async fn read_record(pool: web::Data<Pool>, req: web::Json<Body>) -> Result<HttpResponse, Error> {
-    let body: Body = req.clone();
+pub async fn read_record(pool: web::Data<Pool>, req: web::Path<String>) -> Result<HttpResponse, Error> {
+    let key: String = req.into_inner();
     log::info!("Read Request Incoming");
-    let resp = match get(&pool, &body.key).await {
+    let resp = match get(&pool, &key).await {
         Ok(result) => {
             // redis nao encontrou a chave correta
             if result == None {
-                let nil_msg: String = format!("No such key: \'{}\'", body.key);
+                let nil_msg: String = format!("No such key: \'{}\'", key);
                 GETResponse::no_payload(nil_msg)
             }
             else {
