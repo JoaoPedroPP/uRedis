@@ -1,0 +1,534 @@
+openapi: 3.0.3
+info:
+  title: uRedis
+  version: 1.0.0
+  description: " Rust Redis pool to save and read data "
+  contact:
+    email: poloniponce@protonmail.ch
+    name: JoaoPedroPP
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+tags:
+  - name: Save
+    description: Save document in redis
+  - name: Cache
+    description: Cache documents in redis
+  - name: Read
+    description: Read documents in redis
+  - name: Delete
+    description: Delete documents in redis
+paths:
+  /api/save:
+    post:
+      summary: Add new generic record to redis
+      description: This method can receive string or json object in its payload body and save it
+      tags:
+        - Save
+      requestBody:
+        $ref: "#/components/requestBodies/SaveGeneric"
+      responses:
+        "201":
+          description: Success insert
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 201
+                msg: "Success"
+        "204":
+          description: No body to persist
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 204
+                msg: "No content to persist."
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+  /api/save/string:
+    post:
+      summary: Add new string record to redis
+      tags:
+        - Save
+      requestBody:
+        $ref: "#/components/requestBodies/SaveString"
+      responses:
+        "201":
+          description: Success insert
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 201
+                msg: "Success"
+        "204":
+          description: No body to persist
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 204
+                msg: "No content to persist."
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+  /api/save/json:
+    post:
+      summary: Add new json record to redis
+      tags:
+        - Save
+      requestBody:
+        $ref: "#/components/requestBodies/SaveJSON"
+      responses:
+        "201":
+          description: Success insert
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 201
+                msg: "Success"
+        "204":
+          description: No body to persist
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 204
+                msg: "No content to persist."
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+  /api/cache:
+    post:
+      summary: Add new generic record to cache on redis
+      description: This method can receive string or json object in its payload body and cache it
+      tags:
+        - Cache
+      requestBody:
+        $ref: "#/components/requestBodies/CacheString"
+      responses:
+        "201":
+          description: Success insert
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 201
+                msg: "Success"
+        "204":
+          description: No body to persist
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 204
+                msg: "No content to persist."
+        "206":
+          description: No ttl sset
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 206
+                msg: "No ttl set."
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+  /api/cache/string:
+    post:
+      summary: Add new string to cache in redis
+      tags:
+        - Cache
+      requestBody:
+        $ref: "#/components/requestBodies/CacheString"
+      responses:
+        "201":
+          description: Success insert
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 201
+                msg: "Success"
+        "204":
+          description: No body to persist
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 204
+                msg: "No content to persist."
+        "206":
+          description: No ttl sset
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 206
+                msg: "No ttl set."
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+  /api/cache/json:
+    post:
+      summary: Add new json to cache in redis
+      tags:
+        - Cache
+      requestBody:
+        $ref: "#/components/requestBodies/CacheJSON"
+      responses:
+        "201":
+          description: Success insert
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 201
+                msg: "Success"
+        "204":
+          description: No body to persist
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 204
+                msg: "No content to persist."
+        "206":
+          description: No ttl sset
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 206
+                msg: "No ttl set."
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+  /api/read/{key}:
+    get:
+      summary: Retrive a value from a key
+      tags:
+        - Read
+      parameters:
+        - name: key
+          in: path
+          description: key to be retrive
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/ReadResponse"
+              example:
+                code: 200
+                msg: "Success"
+                type: "string"
+                payload:
+                  {
+                    Simple: "a string value or",
+                    JSON: { key_1: "a json value" },
+                  }
+        "204":
+          description: Did not find any key
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/ReadResponse"
+              example:
+                code: 204
+                msg: "No such key: {key}"
+                type: null
+                payload: null
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/ReadResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+                type: null
+                payload: null
+  /delete/{key}:
+    get:
+      summary: Delete a value from a key
+      tags:
+        - Delete
+      parameters:
+        - name: key
+          in: path
+          description: key to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success insert
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 200
+                msg: "Deleted"
+        "500":
+          description: Internal error
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/InsertResponse"
+              example:
+                code: 500
+                msg: "Internal Server Error"
+components:
+  requestBodies:
+    SaveGeneric:
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              $ref: "#/components/schemas/StringPayload"
+          example:
+            key: a
+            payload: "a string or json value"
+      required: true
+    SaveString:
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              $ref: "#/components/schemas/StringPayload"
+          example:
+            key: a
+            payload: "a value"
+      description: Key and value to save
+      required: true
+    SaveJSON:
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              $ref: "#/components/schemas/JSONPayload"
+          example:
+            key: a
+            payload:
+              key_a: value_a
+              key_b: value_b
+      description: Key and value to save
+      required: true
+    CacheGeneric:
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              $ref: "#/components/schemas/StringCache"
+          example:
+            key: a
+            ttl: 10
+            payload: "a string or json value"
+      description: Key and value to save
+      required: true
+    CacheString:
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              $ref: "#/components/schemas/StringCache"
+          example:
+            key: a
+            ttl: 10
+            payload: "a value"
+      description: Key and value to save
+      required: true
+    CacheJSON:
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              $ref: "#/components/schemas/JSONCache"
+          example:
+            key: a
+            ttl: 10
+            payload:
+              key_a: value_a
+              key_b: value_b
+      description: Key and value to save
+      required: true
+  schemas:
+    StringPayload:
+      type: object
+      properties:
+        key:
+          type: string
+        payload:
+          type: string
+    JSONPayload:
+      type: object
+      properties:
+        key:
+          type: string
+        payload:
+          type: object
+    InsertResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+    StringCache:
+      type: object
+      properties:
+        key:
+          type: string
+        ttl:
+          type: integer
+          format: int64
+        payload:
+          type: string
+    JSONCache:
+      type: object
+      properties:
+        key:
+          type: string
+        ttl:
+          type: integer
+          format: int64
+        payload:
+          type: object
+    ReadResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        msg:
+          type: string
+        payload:
+          type: object
+          properties:
+            JSON:
+              type: object
+            Simple:
+              type: string

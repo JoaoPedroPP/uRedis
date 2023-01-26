@@ -61,7 +61,7 @@ impl GETResponse {
     }
 
     pub fn no_payload(msg: String) -> GETResponse {
-        GETResponse { code: 200, msg: msg, payload: None }
+        GETResponse { code: 204, msg: msg, payload: None }
     }
 
     pub fn error() -> GETResponse {

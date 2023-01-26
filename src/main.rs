@@ -29,7 +29,11 @@ async fn main() -> std::io::Result<()> {
             .service(
                 web::scope("/api")
                 .route("/save", web::post().to(services::save_record))
+                .route("/save/string", web::post().to(services::save_record))
+                .route("/save/json", web::post().to(services::save_record))
                 .route("/cache", web::post().to(services::cache_record))
+                .route("/cache/string", web::post().to(services::cache_record))
+                .route("/cache/json", web::post().to(services::cache_record))
                 .route("/read/{key}", web::get().to(services::read_record))
                 .route("/delete/{key}", web::get().to(services::delete_record))
             )
